@@ -1,9 +1,8 @@
-use base64::{ encode, decode };
-use image::ImageOutputFormat::Png;
 use image::load_from_memory;
 use wasm_bindgen::prelude::*;
+use base64::{ encode, decode };
+use image::ImageOutputFormat::Png;
 use web_sys::console::log_1 as log;
-use std::io::Cursor;
 
 #[wasm_bindgen]
 pub fn grayscale(encoded_file: &str) -> String {
@@ -25,7 +24,6 @@ pub fn grayscale(encoded_file: &str) -> String {
     
     let encode_img = encode(&buffer);
     let data_url = format!("data:image/png;base64,{}", encode_img);
-    println!("{}", &data_url);
 
-    data_url;
+    return data_url;
 }

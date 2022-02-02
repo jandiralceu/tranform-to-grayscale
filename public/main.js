@@ -15,8 +15,6 @@ async function init() {
         const base64 = file.result.replace(/^data:image\/(png|jpeg|jpg);base64,/, '')
         const img_data_url = rustApp.grayscale(base64)
 
-        console.log(img_data_url)
-
         document.getElementById('new-img').setAttribute('src', img_data_url)
     }
 
