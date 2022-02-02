@@ -1,0 +1,17 @@
+name: image_effects
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_to_production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v2
+      - name: ⏳ Installing dependencies
+        run: npm install
+      
+      - name: 📦  Build project
+        run: npm run build
