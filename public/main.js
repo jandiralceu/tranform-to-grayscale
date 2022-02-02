@@ -1,11 +1,23 @@
-function init() {
-    const file = new FileReader()
+async function init() {
+    let rustApp = null
+
+    try {
+        rustApp = await import('../pkg')
+    } catch(error) {
+        console.log(error)
+        return
+    }
+
     const input = document.getElementById('upload')
+    const file = new FileReader()
 
     file.onloadend = () => {
-        let base64 = file.result.replace(/^data:image\/(png|jpeg|jpg);base64,/, '')
-        console.log(input.files[0])
-        console.log(base64)
+        const base64 = file.result.replace(/^data:image\/(png|jpeg|jpg);base64,/, '')
+        const img_data_url = rustApp.grayscale(base64)
+
+        console.log(img_data_url)
+
+        document.getElementById('new-img').setAttribute('src', img_data_url)
     }
 
     input.addEventListener('change', () => {
