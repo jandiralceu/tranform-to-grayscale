@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build_to_production:
+  build_to_github_pages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,3 +15,9 @@ jobs:
       
       - name: 📦  Build project
         run: npm run build
+      
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.3
+        with:
+          branch: gh-pages
+          folder: dist
